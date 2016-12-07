@@ -5,4 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+
+
+    <string name="now_loacation">현재위치</string>
+    <string name="err_geocoder">지오코더 서비스 사용불가</string>
+    <string name="err_not_found_address">주소 미발견</string>
+
 </resources>

@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback{
+    private static final String TAG = MapActivity.class.getSimpleName();
 
     static final LatLng SEOUL = new LatLng(37.56, 126.97);
     private GoogleMap googleMap;

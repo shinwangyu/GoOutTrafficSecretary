@@ -1,7 +1,7 @@
 package wangdaeji.com.goouttrafficsecretary.api.request;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import wangdaeji.com.goouttrafficsecretary.api.response.RetroResponse;
 
@@ -16,13 +16,13 @@ public class ListService extends BaseService{
 
     public interface ListAPI
     {
-        @GET("/api/subway")
+        @POST("/api/subway/{authkey}/{type}/{service}/{start_index}/{end_index}/{statnNm}/")
         Call<RetroResponse> retroRequest(
-                @Path("KEY") String authkey,
-                @Path("TYPE") String type,
-                @Path("SERVICE") String service,
-                @Path("START_INDEX") int start_index,
-                @Path("END_INDEX") int end_index,
+                @Path("authkey") String authkey,
+                @Path("type") String type,
+                @Path("service") String service,
+                @Path("start_index") int start_index,
+                @Path("end_index") int end_index,
                 @Path("statnNm") String statnNm
         );
 

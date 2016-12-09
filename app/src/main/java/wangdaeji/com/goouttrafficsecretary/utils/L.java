@@ -7,7 +7,7 @@ import android.util.Log;
  * 로그 클래스 - 필요 시 추가해서 사용
  */
 public class L {
-    public static boolean DEBUG  = false;
+    public static boolean DEBUG  = true;
 
 
     public static void e(String tag, String _str){

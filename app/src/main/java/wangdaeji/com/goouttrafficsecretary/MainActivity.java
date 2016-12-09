@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("if need, do Custom", null).show();
+
+                //test request API
+                doRequestRetroAPI();
             }
         });
 
@@ -51,10 +54,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //test request API
-//        doRequestRetroAPI();
-
     }
 
 
@@ -113,8 +112,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-
     /**
      * 맵뷰를 보여준다.
      * */
@@ -129,6 +126,7 @@ public class MainActivity extends AppCompatActivity
      * 지하철 정보를 불러온다.
      */
     private void doRequestRetroAPI(){
+
         ListService.api().retroRequest("sample", "json", "realtimeStationArrival", 0, 5, "신림").enqueue(new Callback<RetroResponse>() {
             @Override
             public void onResponse(Call<RetroResponse> call, Response<RetroResponse> response) {

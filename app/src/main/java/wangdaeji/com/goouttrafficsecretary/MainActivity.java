@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //test request API
-        doRequestRetroAPI();
+//        doRequestRetroAPI();
 
     }
 

@@ -14,6 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import wangdaeji.com.goouttrafficsecretary.api.request.ListService;
+import wangdaeji.com.goouttrafficsecretary.api.response.RetroResponse;
+import wangdaeji.com.goouttrafficsecretary.utils.L;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,7 +31,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -33,7 +39,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("if need, do Custom", null).show();
             }
         });
 
@@ -45,7 +51,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //test request API
+        doRequestRetroAPI();
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -85,14 +96,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Intent intent;
-            intent = new Intent(this, MapActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_map) {
+            doStartMapActivity();
+        } else if (id == R.id.nav_path) {
 
         } else if (id == R.id.nav_manage) {
 
@@ -106,4 +112,41 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    /**
+     * 맵뷰를 보여준다.
+     * */
+    private void doStartMapActivity(){
+        Intent intent;
+        intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
+
+
+    /**
+     * 지하철 정보를 불러온다.
+     */
+    private void doRequestRetroAPI(){
+        ListService.api().retroRequest("sample", "json", "realtimeStationArrival", 0, 5, "신림").enqueue(new Callback<RetroResponse>() {
+            @Override
+            public void onResponse(Call<RetroResponse> call, Response<RetroResponse> response) {
+                if(response != null && response.isSuccessful() && response.body() != null){
+                    L.e("response = " + response.body());
+                }
+                else{
+                    L.e("response is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RetroResponse> call, Throwable t) {
+                L.e("response Failed t : " + t.getMessage());
+            }
+        });
+
+//        http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/realtimeStationArrival/0/5/서울
+    }
+
 }

@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary;
+package wangdaeji.com.goouttrafficsecretary.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import wangdaeji.com.goouttrafficsecretary.R;
 import wangdaeji.com.goouttrafficsecretary.utils.L;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener{

@@ -31,11 +31,12 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        ac_Container = MainActivity.this;
         setContentView(R.layout.activity_main);
+        initBind();
     }
 
-    @Override
-    protected void initLayout()
+    private void initBind()
     {
         final Toolbar TB_TOP = getToolbar(R.id.toolbar);
         setSupportActionBar(TB_TOP);

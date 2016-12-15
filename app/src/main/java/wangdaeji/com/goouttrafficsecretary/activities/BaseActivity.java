@@ -42,7 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        initLayout();
     }
 
     @Override
@@ -50,11 +49,6 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onStart();
     }
-
-    /**
-     * 레이아웃 초기화
-     */
-    protected abstract void initLayout();
 
     protected View getView(final int _iViewID)
     {

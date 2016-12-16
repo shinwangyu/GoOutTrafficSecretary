@@ -20,7 +20,8 @@ public class BaseService
         client.addInterceptor(interceptor);
         ////////Log debugger//////////
 
-        String baseURL = "http://swopenAPI.seoul.go.kr";
+        String baseURL = "https://api.github.com/";
+//        String baseURL = "http://swopenAPI.seoul.go.kr/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())

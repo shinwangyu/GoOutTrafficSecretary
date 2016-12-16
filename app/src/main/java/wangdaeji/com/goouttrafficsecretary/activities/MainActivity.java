@@ -13,12 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import wangdaeji.com.goouttrafficsecretary.R;
 import wangdaeji.com.goouttrafficsecretary.api.request.ListService;
-import wangdaeji.com.goouttrafficsecretary.api.response.RetroResponse;
+import wangdaeji.com.goouttrafficsecretary.api.response.User;
 import wangdaeji.com.goouttrafficsecretary.utils.L;
 
 public class MainActivity extends BaseActivity
@@ -31,12 +32,17 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        ac_Container = MainActivity.this;
         setContentView(R.layout.activity_main);
-        initBind();
+        ac_Container = this;
+
+        //butterKnife setting
+        ButterKnife.bind(this);
+
+        initLayout();
     }
 
-    private void initBind()
+
+    protected void initLayout()
     {
         final Toolbar TB_TOP = getToolbar(R.id.toolbar);
         setSupportActionBar(TB_TOP);
@@ -163,24 +169,43 @@ public class MainActivity extends BaseActivity
      */
     private void doRequestRetroAPI(){
 
-        ListService.api().retroRequest("sample", "json", "realtimeStationArrival", 0, 5, "신림").enqueue(new Callback<RetroResponse>() {
+//        ListService.api().retroRequest("sample", "json", "realtimeStationArrival", 0, 5, "신림").enqueue(new Callback<RetroResponse>() {
+//            @Override
+//            public void onResponse(Call<RetroResponse> call, Response<RetroResponse> response) {
+//                L.e(TAG, "isSuccessful : " + response.isSuccessful());
+//
+//                if(response != null && response.isSuccessful() && response.body() != null){
+//                    L.e(TAG, "response = " + response.body());
+//                }
+//                else{
+//                    L.e(TAG, "response is null");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RetroResponse> call, Throwable t) {
+//                L.e(TAG, "response Failed t : " + t.getMessage());
+//            }
+//        });
+
+//        http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/realtimeStationArrival/0/5/서울
+
+
+        ListService.testApi().getUser("syyhuk").enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<RetroResponse> call, Response<RetroResponse> response) {
-                if(response != null && response.isSuccessful() && response.body() != null){
-                    L.e("response = " + response.body());
-                }
-                else{
-                    L.e("response is null");
-                }
+            public void onResponse(Call<User> call, Response<User> response) {
+                L.e(TAG, "response isSuccessful : " + response.isSuccessful());
+                L.e(TAG, "response body : " + response.message());
             }
 
             @Override
-            public void onFailure(Call<RetroResponse> call, Throwable t) {
-                L.e("response Failed t : " + t.getMessage());
+            public void onFailure(Call<User> call, Throwable t) {
+                L.e(TAG, "onFailure -- ");
             }
         });
 
-//        http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/realtimeStationArrival/0/5/서울
+
+
     }
 
 }

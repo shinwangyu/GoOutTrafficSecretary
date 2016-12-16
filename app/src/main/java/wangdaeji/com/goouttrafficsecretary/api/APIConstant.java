@@ -12,6 +12,8 @@ public class APIConstant
     public static final String 	PATH = "/api/subway";
     public static final String  TYPE = "/json";
 
+
+
     protected String getDefaultScheme() { return "http://"; }
     protected String getDefaultHost() { return HOST; }
     protected int getDefaultPort() { return PORT; }

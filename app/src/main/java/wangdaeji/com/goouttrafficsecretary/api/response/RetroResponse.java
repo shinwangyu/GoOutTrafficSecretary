@@ -29,6 +29,7 @@ public class RetroResponse  {
     private String arvlCd;	        //도착코드  (0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
 
 
+
     public String getSubwayId() {
         return subwayId;
     }

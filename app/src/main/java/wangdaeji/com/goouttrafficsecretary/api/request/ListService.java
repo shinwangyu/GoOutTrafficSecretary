@@ -1,9 +1,10 @@
 package wangdaeji.com.goouttrafficsecretary.api.request;
 
 import retrofit2.Call;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 import retrofit2.http.Path;
 import wangdaeji.com.goouttrafficsecretary.api.response.RetroResponse;
+import wangdaeji.com.goouttrafficsecretary.api.response.User;
 
 /**
  * Created by seeroo_dev on 2016. 12. 9..
@@ -16,7 +17,7 @@ public class ListService extends BaseService{
 
     public interface ListAPI
     {
-        @POST("/api/subway/{authkey}/{type}/{service}/{start_index}/{end_index}/{statnNm}/")
+        @GET("api/subway/{authkey}/{type}/{service}/{start_index}/{end_index}/{statnNm}/")
         Call<RetroResponse> retroRequest(
                 @Path("authkey") String authkey,
                 @Path("type") String type,
@@ -26,6 +27,16 @@ public class ListService extends BaseService{
                 @Path("statnNm") String statnNm
         );
 
+    }
+
+
+    public static GitHubService testApi(){
+        return (GitHubService) retrofit(GitHubService.class);
+    }
+
+    public interface GitHubService{
+        @GET("users/{username}/repos")
+        Call<User> getUser(@Path("username") String username);
     }
 
 

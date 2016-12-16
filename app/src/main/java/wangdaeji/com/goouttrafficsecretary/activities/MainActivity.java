@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,11 +23,24 @@ import wangdaeji.com.goouttrafficsecretary.api.request.ListService;
 import wangdaeji.com.goouttrafficsecretary.api.response.RetroResponse;
 import wangdaeji.com.goouttrafficsecretary.utils.L;
 
+
+
+
 public class MainActivity extends BaseActivity
 {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private DrawerLayout    m_DL_Menu = null;
+    @Bind(R.id.toolbar)
+    Toolbar m_TB_Top = null;
+
+    @Bind(R.id.fab)
+    FloatingActionButton    m_FAB_Bottom = null;
+
+    @Bind(R.id.drawer_layout)
+    DrawerLayout    m_DL_Menu = null;
+
+    @Bind(R.id.nav_view)
+    NavigationView m_NV_Menu = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,27 +48,22 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         ac_Container = MainActivity.this;
         setContentView(R.layout.activity_main);
-        initBind();
+        ButterKnife.bind(this);
+        initLayout();
     }
 
-    private void initBind()
+    private void initLayout()
     {
-        final Toolbar TB_TOP = getToolbar(R.id.toolbar);
-        setSupportActionBar(TB_TOP);
+        setSupportActionBar(m_TB_Top);
+        m_FAB_Bottom.setOnClickListener(m_FloatBottomClickListener);
 
-        final FloatingActionButton FAB_BOTTOM = getFloatingActionButton(R.id.fab);
-        FAB_BOTTOM.setOnClickListener(m_FloatBottomClickListener);
-
-        m_DL_Menu = getDrawerLayout(R.id.drawer_layout);
-
-        final ActionBarDrawerToggle ABDT_MENU = new ActionBarDrawerToggle( this, m_DL_Menu, TB_TOP,
+        final ActionBarDrawerToggle ABDT_MENU = new ActionBarDrawerToggle( this, m_DL_Menu, m_TB_Top,
                                                                             R.string.navigation_drawer_open,
                                                                             R.string.navigation_drawer_close);
         m_DL_Menu.setDrawerListener(ABDT_MENU);
         ABDT_MENU.syncState();
 
-        final NavigationView NV_MENU = getNavigationView(R.id.nav_view);
-        NV_MENU.setNavigationItemSelectedListener(m_NavigationItemClickListener);
+        m_NV_Menu.setNavigationItemSelectedListener(m_NavigationItemClickListener);
     }
 
     /**

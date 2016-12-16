@@ -38,6 +38,8 @@ import java.util.Locale;
 import wangdaeji.com.goouttrafficsecretary.R;
 import wangdaeji.com.goouttrafficsecretary.utils.L;
 
+
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener{
     private static final String TAG = MapActivity.class.getSimpleName();
 

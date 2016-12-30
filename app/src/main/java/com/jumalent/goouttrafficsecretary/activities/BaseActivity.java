@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.activities;
+package com.jumalent.goouttrafficsecretary.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

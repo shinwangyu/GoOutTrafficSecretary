@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.activities;
+package com.jumalent.goouttrafficsecretary.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,27 +12,52 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
+import com.jumalent.goouttrafficsecretary.R;
+import com.jumalent.goouttrafficsecretary.api.request.APIListRequest;
+import com.jumalent.goouttrafficsecretary.api.response.ReqAppInfoResponse;
+import com.jumalent.goouttrafficsecretary.api.response.User;
+import com.jumalent.goouttrafficsecretary.utils.L;
+
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import wangdaeji.com.goouttrafficsecretary.R;
-import wangdaeji.com.goouttrafficsecretary.api.request.ListService;
-import wangdaeji.com.goouttrafficsecretary.api.response.User;
-import wangdaeji.com.goouttrafficsecretary.utils.L;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.BaseActivity
 {
     private static final String TAG = MainActivity.class.getSimpleName();
-
     private DrawerLayout    m_DL_Menu = null;
+
+    @Bind(R.id.test_button)
+    Button test_button;
+
+    @OnClick(R.id.test_button)
+    void myOnclick(View view){
+        switch (view.getId()) {
+            case R.id.test_button:
+                L.e("test_button clicked");
+
+                //test request API
+//                doRequestRetroAPI();
+
+
+                doExampleRequestGitHubService();
+
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        L.e("MainActivity ---------------------------");
         ac_Container = this;
 
         //butterKnife setting
@@ -78,7 +103,7 @@ public class MainActivity extends BaseActivity
 
                 case R.id.nav_path:
                 {
-
+                    L.e("nav_path clicked--");
                 }
                 break;
 
@@ -115,10 +140,8 @@ public class MainActivity extends BaseActivity
         public void onClick(View view)
         {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("if need, do Custom", null).show();
-
-            //test request API
-            doRequestRetroAPI();
+                    .setAction("Action", null).show();
+            L.e("m_FloatBottomClickListener clicked");
         }
     };
 
@@ -164,48 +187,53 @@ public class MainActivity extends BaseActivity
     }
 
 
-    /**
-     * 지하철 정보를 불러온다.
-     */
+
     private void doRequestRetroAPI(){
 
-//        ListService.api().retroRequest("sample", "json", "realtimeStationArrival", 0, 5, "신림").enqueue(new Callback<RetroResponse>() {
-//            @Override
-//            public void onResponse(Call<RetroResponse> call, Response<RetroResponse> response) {
-//                L.e(TAG, "isSuccessful : " + response.isSuccessful());
-//
-//                if(response != null && response.isSuccessful() && response.body() != null){
-//                    L.e(TAG, "response = " + response.body());
-//                }
-//                else{
-//                    L.e(TAG, "response is null");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RetroResponse> call, Throwable t) {
-//                L.e(TAG, "response Failed t : " + t.getMessage());
-//            }
-//        });
+        L.e("doRequestRetroAPIs ------");
+        APIListRequest.tcodeApi().reqAppInfo("Zv/pqPhI+bNpBlxyl3DMLlz50w1Kp90jrtmiMKz3F2t2LHnPzeQksiepgMJOUduG4djJ7WXIeKJvNKvFC/jOriAIAVpK+ghv/hxxG+H2oGmN2ps1oBdYyTOt4WUuQGCAIwTYgBXZSTkSdTZoH8LB+uHjagKbT14D+MC5v5Hz7YI=",
+                "sh000000000000000",
+                "SH",
+                "0b15020138c881e2",
+                1,
+                "22222222222222222222").enqueue(new Callback<ReqAppInfoResponse>() {
+            @Override
+            public void onResponse(Call<ReqAppInfoResponse> call, Response<ReqAppInfoResponse> response) {
+                L.e("response.isSuccessful()    : " + response.isSuccessful());
+                L.e("response.message()         : " + response.message());
+                L.e("response.body()            : " + response.body());
+                L.e("response.code()            : " + response.code());
+            }
 
-//        http://swopenAPI.seoul.go.kr/api/subway/(인증키)/xml/realtimeStationArrival/0/5/서울
+            @Override
+            public void onFailure(Call<ReqAppInfoResponse> call, Throwable t) {
+                L.e("onFailure -- ");
+            }
+        });
+
+    }
 
 
-        ListService.testApi().getUser("syyhuk").enqueue(new Callback<User>() {
+    private void doExampleRequestGitHubService(){
+        APIListRequest.testGitHubApi().getUser("octocat").enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                L.e(TAG, "response isSuccessful : " + response.isSuccessful());
-                L.e(TAG, "response body : " + response.message());
+                L.e("response.isSuccessful()    : " + response.isSuccessful());
+                L.e("response.message()         : " + response.message());
+                L.e("response.body()            : " + response.body());
+                L.e("response.code()            : " + response.code());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                L.e(TAG, "onFailure -- ");
+                L.e("onFailure -- ");
             }
         });
+    }
 
 
-
+    private void doExampleRequestRetroSampleAPI(){
+//        APIListRequest.api().retroRequest("sample", "subway")
     }
 
 }

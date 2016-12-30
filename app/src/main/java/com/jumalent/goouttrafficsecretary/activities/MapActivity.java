@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.activities;
+package com.jumalent.goouttrafficsecretary.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -30,15 +30,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.jumalent.goouttrafficsecretary.R;
+import com.jumalent.goouttrafficsecretary.utils.L;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import wangdaeji.com.goouttrafficsecretary.R;
-import wangdaeji.com.goouttrafficsecretary.utils.L;
-
-
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener{
     private static final String TAG = MapActivity.class.getSimpleName();

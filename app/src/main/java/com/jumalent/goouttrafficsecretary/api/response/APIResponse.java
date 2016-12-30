@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.api.response;
+package com.jumalent.goouttrafficsecretary.api.response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;

@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.api.response;
+package com.jumalent.goouttrafficsecretary.api.response;
 
 /**
  * Created by seeroo_dev on 2016. 12. 8..

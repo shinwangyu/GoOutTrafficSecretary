@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary;
+package com.jumalent.goouttrafficsecretary;
 
 import org.junit.Test;
 

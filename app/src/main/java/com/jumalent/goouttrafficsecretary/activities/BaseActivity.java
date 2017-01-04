@@ -1,5 +1,6 @@
 package com.jumalent.goouttrafficsecretary.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -29,6 +30,9 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.jumalent.goouttrafficsecretary.utils.MyPreferenceData;
+import com.jumalent.goouttrafficsecretary.utils.UIUtil.CommonProgressDialog;
+
 public abstract class BaseActivity extends AppCompatActivity
 {
     /**
@@ -38,10 +42,43 @@ public abstract class BaseActivity extends AppCompatActivity
      */
     public AppCompatActivity ac_Container = null;
 
+    /** 로딩바 객체 정의 */
+    protected CommonProgressDialog cpd;
+
+    /** 자식들이 사용할 Intent 객체 정의*/
+    protected Intent baseIntent;
+
+    /** PreferenceData 객체 정의*/
+    protected MyPreferenceData mpd;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        cpd = new CommonProgressDialog(this);
+        cpd.setCancelable(false);
+
+        mpd = new MyPreferenceData(this);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        stopProgress();
+        baseIntent = null;
+        mpd = null;
+    }
+
+    protected void startProgress(){
+        cpd.show();
+    }
+
+    protected void stopProgress(){
+        cpd.hide();
     }
 
     @Override
@@ -178,12 +215,5 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         return (NavigationView)ac_Container.findViewById(_iViewID);
     }
-
-
-
-
-
-
-
 
 }

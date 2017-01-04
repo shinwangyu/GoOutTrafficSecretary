@@ -1,4 +1,4 @@
-package com.jumalent.goouttrafficsecretary.activities;
+package com.jumalent.goouttrafficsecretary.activities.map;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -206,7 +206,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
-
 
         if (ActivityCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

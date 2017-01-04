@@ -1,5 +1,6 @@
-package com.jumalent.goouttrafficsecretary.activities;
+package com.jumalent.goouttrafficsecretary.activities.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,39 +16,28 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jumalent.goouttrafficsecretary.R;
-import com.jumalent.goouttrafficsecretary.api.request.APIListRequest;
-import com.jumalent.goouttrafficsecretary.api.response.ReqAppInfoResponse;
-import com.jumalent.goouttrafficsecretary.api.response.User;
+import com.jumalent.goouttrafficsecretary.activities.map.MapActivity;
 import com.jumalent.goouttrafficsecretary.utils.L;
-
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.BaseActivity
+public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.BaseActivity implements MainView
 {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private DrawerLayout    m_DL_Menu = null;
+
+    private DrawerLayout m_DL_Menu = null;
+    private MainPresenter mainPresenter;
 
     @Bind(R.id.test_button)
     Button test_button;
-
     @OnClick(R.id.test_button)
     void myOnclick(View view){
         switch (view.getId()) {
             case R.id.test_button:
                 L.e("test_button clicked");
-
-                //test request API
-//                doRequestRetroAPI();
-
-
-                doExampleRequestGitHubService();
-
+                mainPresenter.doRequestMetro("start point", "end point");
                 break;
         }
     }
@@ -58,14 +48,13 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         L.e("MainActivity ---------------------------");
+
+        ButterKnife.bind(this);
         ac_Container = this;
 
-        //butterKnife setting
-        ButterKnife.bind(this);
-
+        mainPresenter = new MainPresenterImpl(this);
         initLayout();
     }
-
 
     protected void initLayout()
     {
@@ -187,53 +176,23 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
     }
 
 
-
-    private void doRequestRetroAPI(){
-
-        L.e("doRequestRetroAPIs ------");
-        APIListRequest.tcodeApi().reqAppInfo("Zv/pqPhI+bNpBlxyl3DMLlz50w1Kp90jrtmiMKz3F2t2LHnPzeQksiepgMJOUduG4djJ7WXIeKJvNKvFC/jOriAIAVpK+ghv/hxxG+H2oGmN2ps1oBdYyTOt4WUuQGCAIwTYgBXZSTkSdTZoH8LB+uHjagKbT14D+MC5v5Hz7YI=",
-                "sh000000000000000",
-                "SH",
-                "0b15020138c881e2",
-                1,
-                "22222222222222222222").enqueue(new Callback<ReqAppInfoResponse>() {
-            @Override
-            public void onResponse(Call<ReqAppInfoResponse> call, Response<ReqAppInfoResponse> response) {
-                L.e("response.isSuccessful()    : " + response.isSuccessful());
-                L.e("response.message()         : " + response.message());
-                L.e("response.body()            : " + response.body());
-                L.e("response.code()            : " + response.code());
-            }
-
-            @Override
-            public void onFailure(Call<ReqAppInfoResponse> call, Throwable t) {
-                L.e("onFailure -- ");
-            }
-        });
+    @Override
+    public void getSelectedItem(int pos) {
 
     }
 
-
-    private void doExampleRequestGitHubService(){
-        APIListRequest.testGitHubApi().getUser("octocat").enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                L.e("response.isSuccessful()    : " + response.isSuccessful());
-                L.e("response.message()         : " + response.message());
-                L.e("response.body()            : " + response.body());
-                L.e("response.code()            : " + response.code());
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                L.e("onFailure -- ");
-            }
-        });
+    @Override
+    public void showProgress() {
+        startProgress();
     }
 
-
-    private void doExampleRequestRetroSampleAPI(){
-//        APIListRequest.api().retroRequest("sample", "subway")
+    @Override
+    public void hideProgress() {
+        stopProgress();
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
 }

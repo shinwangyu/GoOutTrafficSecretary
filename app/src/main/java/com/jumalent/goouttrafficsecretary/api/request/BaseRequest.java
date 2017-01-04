@@ -11,12 +11,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by seeroo_dev on 2016. 12. 8..
  */
-public class BaseService
+public class BaseRequest
 {
-    private static String baseURL = "https://dtcode.seeroo.info/tcode/";
+    //기본 URL (tago url을 넣으면 됨.
+//    private static String baseURL = "https://dtcode.seeroo.info/tcode/";
+    private static String baseURL = "https://api.github.com/";
 
-
+    //Default RetroFit Setting
     protected static Object retrofit(Class<?> className){
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -31,21 +34,6 @@ public class BaseService
                 .build();
 
         return retrofit.create(className);
-
-//        ////////Log debugger//////////
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
-//        OkHttpClient.Builder client = new OkHttpClient.Builder();
-//        client.addInterceptor(interceptor);
-//        ////////Log debugger//////////
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(baseURL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .client(client.build())
-//                .build();
-//
-//        return retrofit.create(className);
     }
 
 

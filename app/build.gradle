@@ -25,21 +25,24 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
+    //기본 v7 지원 라이브러리
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:design:24.2.1'
 
+    //google map 지원 라이브러리
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.google.android.gms:play-services-location:10.0.1'
 
-    //retrofit2
+    //retrofit2 (통신 라이브러리)
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
-
-
-    //butter knife
+    //butter knife (xml 간편 바인딩 지원 라이브러리)
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    // otto bus -> observer 형식의 activity 또는 fragment간 통신에 사용 가능한 유용한 라이브러리
+//    compile 'com.squareup:otto:1.3.7'
 }

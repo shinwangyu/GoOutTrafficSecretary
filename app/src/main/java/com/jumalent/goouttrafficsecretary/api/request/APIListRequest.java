@@ -14,12 +14,24 @@ import retrofit2.http.Path;
 /**
  * Created by seeroo_dev on 2016. 12. 9..
  */
-public class ListService extends com.jumalent.goouttrafficsecretary.api.request.BaseService {
+public class APIListRequest extends BaseRequest {
 
+    /**
+     * API요청 interface 만드는 법
+     * 1. interface 정의
+     * 2. interface를 호출 할 수 있는 static method 정의
+     * 3. interface에 전송 방식 설정 : @GET or @POST
+     */
+
+
+
+    /**
+     * 지하철 정보 받아오는 api
+     * @return
+     */
     public static ListAPI api(){
         return (ListAPI) retrofit(ListAPI.class);
     }
-
     public interface ListAPI
     {
         @GET("api/subway/{authkey}/{type}/{service}/{start_index}/{end_index}/{statnNm}/")
@@ -31,24 +43,32 @@ public class ListService extends com.jumalent.goouttrafficsecretary.api.request.
                 @Path("end_index") int end_index,
                 @Path("statnNm") String statnNm
         );
-
     }
 
 
+
+
+    /**
+     * gitHub값 받아오는 api (TEST용)
+     * @return
+     */
     public static GitHubService testGitHubApi(){
         return (GitHubService) retrofit(GitHubService.class);
     }
-
     public interface GitHubService{
-        @GET("users/{username}/repos")
-        Call<User> getUser(@Path("username") String username);
+        @GET("users/{user}/repos")
+        Call<User> getUser(@Path("user") String username);
     }
 
 
+
+    /**
+     * tcode서버 앱정보 받아오는 API (TEST용)
+     * @return
+     */
     public static tcodeRequest tcodeApi(){
         return (tcodeRequest) retrofit(tcodeRequest.class);
     }
-
     public interface tcodeRequest{
         @POST(value = "api/reqAppInfo")
         @FormUrlEncoded
@@ -60,5 +80,6 @@ public class ListService extends com.jumalent.goouttrafficsecretary.api.request.
                                             @Field("encClnn") String encClnn);
 
     }
+
 
 }

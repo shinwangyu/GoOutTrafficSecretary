@@ -1,4 +1,4 @@
-package wangdaeji.com.goouttrafficsecretary.api;
+package com.jumalent.goouttrafficsecretary.api;
 
 /**
  * Created by seeroo_dev on 2016. 12. 8..
@@ -19,6 +19,5 @@ public class APIConstant
     protected int getDefaultPort() { return PORT; }
     protected String getDefaultPath() { return PATH; }
     protected String getDefaultType() {return TYPE; }
-
 
 }

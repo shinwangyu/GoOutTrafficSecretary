@@ -31,7 +31,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.jumalent.goouttrafficsecretary.utils.MyPreferenceData;
-import com.jumalent.goouttrafficsecretary.utils.UIUtil.CommonProgressDialog;
+import com.jumalent.goouttrafficsecretary.utils.uiutil.CommonProgressDialog;
 
 public abstract class BaseActivity extends AppCompatActivity
 {
@@ -215,5 +215,4 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         return (NavigationView)ac_Container.findViewById(_iViewID);
     }
-
 }

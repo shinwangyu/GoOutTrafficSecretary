@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import com.jumalent.goouttrafficsecretary.R;
 import com.jumalent.goouttrafficsecretary.activities.map.MapActivity;
 import com.jumalent.goouttrafficsecretary.utils.L;
+import com.jumalent.goouttrafficsecretary.utils.uiutil.MultiItemAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,16 +30,26 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout m_DL_Menu = null;
-    private MainPresenter mainPresenter;
+    private MainPresenter mainPresenter = null;
 
-    @Bind(R.id.test_button)
-    Button test_button;
-    @OnClick(R.id.test_button)
+    private MultiItemAdapter mAdapter = null;
+    private RecyclerView.LayoutManager mLayoutManager = null;
+
+    @Bind(R.id.main_rv)
+    RecyclerView mRecyclerView;
+
+    @Bind(R.id.test_metro_bt)
+    Button test_metro_bt;
+    @OnClick({R.id.test_metro_bt, R.id.test_bus_bt})
     void myOnclick(View view){
         switch (view.getId()) {
-            case R.id.test_button:
+            case R.id.test_metro_bt:
                 L.e("test_button clicked");
-                mainPresenter.doRequestMetro("start point", "end point");
+                mainPresenter.requestMetroAPI("start point", "end point");
+                break;
+
+            case R.id.test_bus_bt:
+                mainPresenter.requestBusAPI("start point", "end point");
                 break;
         }
     }
@@ -74,6 +86,26 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
 
         final NavigationView NV_MENU = getNavigationView(R.id.nav_view);
         NV_MENU.setNavigationItemSelectedListener(m_NavigationItemClickListener);
+
+
+
+//        //recycler view
+//        mRecyclerView.setHasFixedSize(true);
+//
+//        //use a linear layout manager
+//        mLayoutManager = new LinearLayoutManager(this);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//
+//        //specify an adapter (see also next example)
+//        mAdapter = new MultiItemAdapter() {
+//            @Override
+//            public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//                return new MyViewHolder(parent.getRootView());
+//            }
+//        };
+//
+//
+//        mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
@@ -87,7 +119,7 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
             switch (item.getItemId())
             {
                 case R.id.nav_map:
-                    doStartMapActivity();
+                    mainPresenter.requestGotoMapActivity();
                 break;
 
                 case R.id.nav_path:
@@ -169,7 +201,8 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
     /**
      * 맵뷰를 보여준다.
      * */
-    private void doStartMapActivity(){
+    @Override
+    public void doStartMapActivity(){
         Intent intent;
         intent = new Intent(this, MapActivity.class);
         startActivity(intent);
@@ -178,7 +211,6 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
 
     @Override
     public void getSelectedItem(int pos) {
-
     }
 
     @Override

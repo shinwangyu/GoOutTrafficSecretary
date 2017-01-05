@@ -1,14 +1,9 @@
 package com.jumalent.goouttrafficsecretary.api.request;
 
-import com.jumalent.goouttrafficsecretary.api.response.ReqAppInfoResponse;
-import com.jumalent.goouttrafficsecretary.api.response.RetroResponse;
-import com.jumalent.goouttrafficsecretary.api.response.User;
+import com.jumalent.goouttrafficsecretary.api.response.MetroResponse;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -29,13 +24,13 @@ public class APIListRequest extends BaseRequest {
      * 지하철 정보 받아오는 api
      * @return
      */
-    public static ListAPI api(){
-        return (ListAPI) retrofit(ListAPI.class);
+    public static MetroDataRequest api(){
+        return (MetroDataRequest) retrofit(MetroDataRequest.class);
     }
-    public interface ListAPI
+    public interface MetroDataRequest
     {
         @GET("api/subway/{authkey}/{type}/{service}/{start_index}/{end_index}/{statnNm}/")
-        Call<RetroResponse> retroRequest(
+        Call<MetroResponse> metroRequest(
                 @Path("authkey") String authkey,
                 @Path("type") String type,
                 @Path("service") String service,
@@ -48,38 +43,38 @@ public class APIListRequest extends BaseRequest {
 
 
 
-    /**
-     * gitHub값 받아오는 api (TEST용)
-     * @return
-     */
-    public static GitHubService testGitHubApi(){
-        return (GitHubService) retrofit(GitHubService.class);
-    }
-    public interface GitHubService{
-        @GET("users/{user}/repos")
-        Call<User> getUser(@Path("user") String username);
-    }
-
-
-
-    /**
-     * tcode서버 앱정보 받아오는 API (TEST용)
-     * @return
-     */
-    public static tcodeRequest tcodeApi(){
-        return (tcodeRequest) retrofit(tcodeRequest.class);
-    }
-    public interface tcodeRequest{
-        @POST(value = "api/reqAppInfo")
-        @FormUrlEncoded
-        Call<ReqAppInfoResponse> reqAppInfo(@Field("appID") String appID,
-                                            @Field("appKeyID") String appKeyID,
-                                            @Field("cardsaID") String cardsaID,
-                                            @Field("deviceID") String deviceID,
-                                            @Field("deviceType") int deviceType,
-                                            @Field("encClnn") String encClnn);
-
-    }
+//    /**
+//     * gitHub값 받아오는 api (TEST용)
+//     * @return
+//     */
+//    public static GitHubService testGitHubApi(){
+//        return (GitHubService) retrofit(GitHubService.class);
+//    }
+//    public interface GitHubService{
+//        @GET("users/{user}/repos")
+//        Call<User> getUser(@Path("user") String username);
+//    }
+//
+//
+//
+//    /**
+//     * tcode서버 앱정보 받아오는 API (TEST용)
+//     * @return
+//     */
+//    public static tcodeRequest tcodeApi(){
+//        return (tcodeRequest) retrofit(tcodeRequest.class);
+//    }
+//    public interface tcodeRequest{
+//        @POST(value = "api/reqAppInfo")
+//        @FormUrlEncoded
+//        Call<ReqAppInfoResponse> reqAppInfo(@Field("appID") String appID,
+//                                            @Field("appKeyID") String appKeyID,
+//                                            @Field("cardsaID") String cardsaID,
+//                                            @Field("deviceID") String deviceID,
+//                                            @Field("deviceType") int deviceType,
+//                                            @Field("encClnn") String encClnn);
+//
+//    }
 
 
 }

@@ -13,9 +13,19 @@ android {
     }
 
     buildTypes {
+
+        debug {
+//            // 개발용 KEY
+//            resValue "string", "google_maps_api_key", "개발용 API KEY"
+        }
+
+
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+//            resValue "string", "google_maps_api_key", "배포용 API KEY"
         }
     }
 }
@@ -27,7 +37,7 @@ dependencies {
 
     //기본 v7 지원 라이브러리
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
+//    compile 'com.android.support:support-v7:24.2.0'
     compile 'com.android.support:design:24.2.1'
 
     //google map 지원 라이브러리

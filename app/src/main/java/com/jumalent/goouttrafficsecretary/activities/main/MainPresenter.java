@@ -10,14 +10,19 @@ public interface MainPresenter {
      * @param strPoint
      * @param endPoint
      */
-    void doRequestMetro(String strPoint, String endPoint);
+    void requestMetroAPI(String strPoint, String endPoint);
 
     /**
      * 시작지 도착지별 버스 노선 정보 요청
      * @param strPoint
      * @param endPoint
      */
-    void doRequestBus(String strPoint, String endPoint);
+    void requestBusAPI(String strPoint, String endPoint);
+
+    /**
+     * 맵화면으로 이동 요청
+     */
+    void requestGotoMapActivity();
 
 
 

@@ -6,4 +6,9 @@ package com.jumalent.goouttrafficsecretary.activities.main;
 public interface MainInteractor {
 
     void onSelectedItem(int pos);
+
+
+    //API method
+    void onRequestMetroAPI(String stPoint, String enPoint, retrofit2.Callback callback);
+    void onRequestBusAPI(String stPoint, String enPoint, retrofit2.Callback callback);
 }

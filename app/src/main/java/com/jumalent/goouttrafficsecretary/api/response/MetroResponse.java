@@ -3,7 +3,7 @@ package com.jumalent.goouttrafficsecretary.api.response;
 /**
  * Created by seeroo_dev on 2016. 12. 8..
  */
-public class RetroResponse  {
+public class MetroResponse {
     //url : http://data.seoul.go.kr/openinf/openapiview.jsp?infId=OA-12764 여기 가보면 api 연동 샘플 나옴
 
     private String subwayId;        //지하철호선ID

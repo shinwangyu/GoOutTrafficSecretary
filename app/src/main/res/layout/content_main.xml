@@ -13,19 +13,11 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <!--test-->
-    <LinearLayout
-        android:id="@+id/bn_test_ll"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical">
-    </LinearLayout>
+    <!--into main view implements-->
 
-    <TextView
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+
+
+
 
 </RelativeLayout>

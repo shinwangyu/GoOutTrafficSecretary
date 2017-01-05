@@ -32,10 +32,26 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
 
-    <Button
-        android:id="@+id/test_button"
+
+    <!--temp button ll-->
+    <LinearLayout
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:gravity="center"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/test_metro_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지하철 데이터 요청 테스트 버튼"/>
+
+        <Button
+            android:id="@+id/test_bus_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버스 데이터 요청 테스트 버튼"/>
+    </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

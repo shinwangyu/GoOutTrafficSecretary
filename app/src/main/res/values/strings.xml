@@ -37,4 +37,7 @@
     <string name="succeed_login">로그인이 완료되었습니다.</string>
     <string name="succeed_add">정상 등록되었습니다.</string>
 
+    <!--main-->
+    <string name="saved_go_out_path">저장된 출퇴근 경로</string>
+
 </resources>

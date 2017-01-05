@@ -1,11 +1,10 @@
 package com.jumalent.goouttrafficsecretary.activities.main;
 
-import com.jumalent.goouttrafficsecretary.api.request.APIListRequest;
-import com.jumalent.goouttrafficsecretary.api.response.ReqAppInfoResponse;
+import com.jumalent.goouttrafficsecretary.api.response.BusResponse;
+import com.jumalent.goouttrafficsecretary.api.response.MetroResponse;
 import com.jumalent.goouttrafficsecretary.utils.L;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -23,53 +22,52 @@ public class MainPresenterImpl implements MainPresenter {
 
 
     @Override
-    public void doRequestMetro(String strPoint, String endPoint) {
-
-//        APIListRequest.testGitHubApi().getUser("octocat").enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                L.e("response.isSuccessful()    : " + response.isSuccessful());
-//                L.e("response.message()         : " + response.message());
-//                L.e("response.body()            : " + response.body());
-//                L.e("response.code()            : " + response.code());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                L.e("onFailure -- ");
-//            }
-//        });
-
-
-        L.e("doRequestMetroAPIs ------");
-        APIListRequest.tcodeApi().reqAppInfo("Zv/pqPhI+bNpBlxyl3DMLlz50w1Kp90jrtmiMKz3F2t2LHnPzeQksiepgMJOUduG4djJ7WXIeKJvNKvFC/jOriAIAVpK+ghv/hxxG+H2oGmN2ps1oBdYyTOt4WUuQGCAIwTYgBXZSTkSdTZoH8LB+uHjagKbT14D+MC5v5Hz7YI=",
-                "sh000000000000000",
-                "SH",
-                "0b15020138c881e2",
-                1,
-                "22222222222222222222").enqueue(new Callback<ReqAppInfoResponse>() {
+    public void requestMetroAPI(String strPoint, String endPoint) {
+        mainInteractor.onRequestMetroAPI(strPoint, endPoint, new retrofit2.Callback<MetroResponse>() {
             @Override
-            public void onResponse(Call<ReqAppInfoResponse> call, Response<ReqAppInfoResponse> response) {
+            public void onResponse(Call<MetroResponse> call, Response<MetroResponse> response) {
                 L.e("response.isSuccessful()    : " + response.isSuccessful());
                 L.e("response.message()         : " + response.message());
                 L.e("response.body()            : " + response.body());
                 L.e("response.code()            : " + response.code());
+
+                //화면 갱신이 필요할 경우 -> mainview 객체 사용
             }
 
             @Override
-            public void onFailure(Call<ReqAppInfoResponse> call, Throwable t) {
+            public void onFailure(Call<MetroResponse> call, Throwable t) {
                 L.e("onFailure -- ");
+
+                //화면 갱신이 필요할 경우 -> mainview 객체 사용
             }
         });
-
-
-
-
     }
 
     @Override
-    public void doRequestBus(String strPoint, String endPoint) {
+    public void requestBusAPI(String strPoint, String endPoint) {
+        mainInteractor.onRequestBusAPI(strPoint, endPoint, new retrofit2.Callback<BusResponse>() {
+            @Override
+            public void onResponse(Call<BusResponse> call, Response<BusResponse> response) {
+                //화면 갱신이 필요할 경우 -> mainview 객체 사용
+            }
 
+            @Override
+            public void onFailure(Call<BusResponse> call, Throwable t) {
+                //화면 갱신이 필요할 경우 -> mainview 객체 사용
+            }
+        });
+    }
+
+
+    /**
+     * 맵 화면 전환 요청
+     */
+    @Override
+    public void requestGotoMapActivity() {
+        //맵화면으로 이동 시 체크 사항이 있을 경우 여기서 체크...
+
+        //맵화면으로 이동
+        mainView.doStartMapActivity();
     }
 
     @Override

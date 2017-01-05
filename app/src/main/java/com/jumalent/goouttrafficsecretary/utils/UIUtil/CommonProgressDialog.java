@@ -1,4 +1,4 @@
-package com.jumalent.goouttrafficsecretary.utils.UIUtil;
+package com.jumalent.goouttrafficsecretary.utils.uiutil;
 
 import android.app.Dialog;
 import android.content.Context;

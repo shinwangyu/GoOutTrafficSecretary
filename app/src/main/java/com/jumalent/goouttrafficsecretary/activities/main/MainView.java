@@ -11,5 +11,7 @@ public interface MainView {
     void showProgress();
     void hideProgress();
 
+    void doStartMapActivity();
+
     Context getContext();
 }

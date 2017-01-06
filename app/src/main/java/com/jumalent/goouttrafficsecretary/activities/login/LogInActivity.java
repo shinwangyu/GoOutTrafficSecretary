@@ -31,7 +31,6 @@ public class LogInActivity extends BaseActivity implements LogInView {
      * 3. LogInInteractorImpl은 LogInInteractor를 상속받아 business로직을 처리...   Ex) 로그인에서는 유저가 입력한 값 유효성등을 처리 등등.
      */
 
-
     private LogInPresenter loginPresenter = null;
 
     @Bind(R.id.login_id_et)
@@ -67,13 +66,15 @@ public class LogInActivity extends BaseActivity implements LogInView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
         ButterKnife.bind(this);
+
         loginPresenter = new LogInPresenterImpl(this);
 
         // 동적 화면 갱신
         loginPresenter.setDisplay();
     }
+
+
 
     @Override
     public void setUsernameError() {
@@ -136,7 +137,5 @@ public class LogInActivity extends BaseActivity implements LogInView {
     public Context getContext() {
         return this;
     }
-
-    
 
 }

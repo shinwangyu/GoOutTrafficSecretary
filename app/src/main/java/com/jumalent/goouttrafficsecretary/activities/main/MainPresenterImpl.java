@@ -31,7 +31,15 @@ public class MainPresenterImpl implements MainPresenter {
                 L.e("response.body()            : " + response.body());
                 L.e("response.code()            : " + response.code());
 
+                if(response.isSuccessful()){
+
+
+                }
+
                 //화면 갱신이 필요할 경우 -> mainview 객체 사용
+
+
+
             }
 
             @Override
@@ -60,15 +68,38 @@ public class MainPresenterImpl implements MainPresenter {
 
 
     /**
+     * TEST CODE
+     */
+    @Override
+    public void requestGitHubAPI() {
+//        APIListRequest.api().metroRequest("authKey", "type", "service", 1, 10, "신림").enqueue(callback);
+
+//        APIListRequest.testGitHubApi().getUser("syyhukz").enqueue(new retrofit2.Callback<BusResponse>);
+    }
+
+
+    /**
      * 맵 화면 전환 요청
      */
     @Override
     public void requestGotoMapActivity() {
-        //맵화면으로 이동 시 체크 사항이 있을 경우 여기서 체크...
+        //화면 이동 시 체크 사항이 있을 경우 여기서 체크...
 
         //맵화면으로 이동
         mainView.doStartMapActivity();
     }
+
+    /**
+     * 출퇴 경로 리스트 화면 전환 요청
+     */
+    @Override
+    public void requestGotoPathListActivity(){
+        //화면 이동 시 체크 사항이 있을 경우 여기서 체크....
+
+        mainView.doStartPathListActivity();
+    }
+
+
 
     @Override
     public void onDestroy() {

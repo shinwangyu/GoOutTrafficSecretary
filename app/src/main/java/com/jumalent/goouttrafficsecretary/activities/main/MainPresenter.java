@@ -25,6 +25,18 @@ public interface MainPresenter {
     void requestGotoMapActivity();
 
 
+    /**
+     * 경로 리스트 화면으로 이동 요청
+     */
+    void requestGotoPathListActivity();
+
+
+    /**
+     * api 테스트 -> github
+     */
+    void requestGitHubAPI();
+
+
 
 
     void onDestroy();

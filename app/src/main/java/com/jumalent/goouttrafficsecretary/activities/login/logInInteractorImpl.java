@@ -12,7 +12,6 @@ import com.jumalent.goouttrafficsecretary.utils.MyPreferenceData;
  */
 public class LogInInteractorImpl implements LogInInteractor{
 
-
     @Override
     public void login(final Context context, final String username, final String password, final OnLoginFinishedListener listener) {
         new Handler().postDelayed(new Runnable() {

@@ -14,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BaseRequest
 {
     //기본 URL (tago url을 넣으면 됨.
-//    private static String baseURL = "https://dtcode.seeroo.info/tcode/";
     private static String baseURL = "https://api.github.com/";
 
     //Default RetroFit Setting
@@ -38,3 +37,6 @@ public class BaseRequest
 
 
 }
+
+
+

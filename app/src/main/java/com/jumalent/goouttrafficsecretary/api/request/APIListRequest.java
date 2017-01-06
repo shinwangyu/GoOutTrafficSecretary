@@ -1,6 +1,7 @@
 package com.jumalent.goouttrafficsecretary.api.request;
 
 import com.jumalent.goouttrafficsecretary.api.response.MetroResponse;
+import com.jumalent.goouttrafficsecretary.api.response.User;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -43,17 +44,17 @@ public class APIListRequest extends BaseRequest {
 
 
 
-//    /**
-//     * gitHub값 받아오는 api (TEST용)
-//     * @return
-//     */
-//    public static GitHubService testGitHubApi(){
-//        return (GitHubService) retrofit(GitHubService.class);
-//    }
-//    public interface GitHubService{
-//        @GET("users/{user}/repos")
-//        Call<User> getUser(@Path("user") String username);
-//    }
+    /**
+     * gitHub값 받아오는 api (TEST용)
+     * @return
+     */
+    public static GitHubService testGitHubApi(){
+        return (GitHubService) retrofit(GitHubService.class);
+    }
+    public interface GitHubService{
+        @GET("users/{user}/repos")
+        Call<User> getUser(@Path("user") String username);
+    }
 //
 //
 //

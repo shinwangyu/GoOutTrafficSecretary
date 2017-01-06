@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.text.TextUtils;
 
+import com.facebook.stetho.Stetho;
 import com.jumalent.goouttrafficsecretary.utils.L;
 import com.jumalent.goouttrafficsecretary.utils.MyPreferenceData;
 
@@ -42,12 +43,12 @@ public class TrafficApplication extends Application {
 
         L.LOG_ON = DEBUG;
 
+        //debugging library initialize
+        Stetho.initializeWithDefaults(this);
 
         //회원가입여부 저장
         setRegisteredAccount();
-
     }
-
 
     /**
      * 서비스 가입여부 저장. (Global value)

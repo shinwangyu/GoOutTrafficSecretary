@@ -39,5 +39,15 @@
 
     <!--main-->
     <string name="saved_go_out_path">저장된 출퇴근 경로</string>
+    <string name="title_activity_path_list">PathListActivity</string>
+
+
+    <!--permission Info-->
+    <string name="location_permission_info">앱에서 위치정보 권한을 요청합니다. 허용하시겠습니까?</string>
+    <string name="location_permission_disagree_info">설정에서 권한을 허용하시면 맵을 확인하실 수 있습니다.</string>
+
+    <string name="gps_permission_info">앱에서 GPS 권한을 요청합니다. 허용하시겠습니까?</string>
+    <string name="gps_permission_disagree_info">설정에서 권한을 허용하시면 맵을 확인하실 수 있습니다.</string>
+
 
 </resources>

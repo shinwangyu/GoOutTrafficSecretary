@@ -52,6 +52,8 @@ public abstract class BaseActivity extends AppCompatActivity
     protected MyPreferenceData mpd;
 
 
+    //필요 시 구현 -> 강제 하는게 맞는지 확인이 필요....
+//    protected abstract void initLayout();
 
 
     @Override

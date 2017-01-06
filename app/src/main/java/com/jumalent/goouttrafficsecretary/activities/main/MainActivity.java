@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +17,8 @@ import android.widget.Button;
 
 import com.jumalent.goouttrafficsecretary.R;
 import com.jumalent.goouttrafficsecretary.activities.map.MapActivity;
+import com.jumalent.goouttrafficsecretary.activities.pathlist.PathListActivity;
 import com.jumalent.goouttrafficsecretary.utils.L;
-import com.jumalent.goouttrafficsecretary.utils.uiutil.MultiItemAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,14 +31,9 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
     private DrawerLayout m_DL_Menu = null;
     private MainPresenter mainPresenter = null;
 
-    private MultiItemAdapter mAdapter = null;
-    private RecyclerView.LayoutManager mLayoutManager = null;
-
-    @Bind(R.id.main_rv)
-    RecyclerView mRecyclerView;
-
     @Bind(R.id.test_metro_bt)
     Button test_metro_bt;
+
     @OnClick({R.id.test_metro_bt, R.id.test_bus_bt})
     void myOnclick(View view){
         switch (view.getId()) {
@@ -57,15 +51,18 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        L.e(TAG, "mainOnCreate ---------------------------");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        L.e("MainActivity ---------------------------");
-
         ButterKnife.bind(this);
         ac_Container = this;
 
-        mainPresenter = new MainPresenterImpl(this);
+        //set layout
         initLayout();
+
+
+
+        mainPresenter = new MainPresenterImpl(this);
     }
 
     protected void initLayout()
@@ -77,7 +74,6 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
         FAB_BOTTOM.setOnClickListener(m_FloatBottomClickListener);
 
         m_DL_Menu = getDrawerLayout(R.id.drawer_layout);
-
         final ActionBarDrawerToggle ABDT_MENU = new ActionBarDrawerToggle( this, m_DL_Menu, TB_TOP,
                                                                             R.string.navigation_drawer_open,
                                                                             R.string.navigation_drawer_close);
@@ -86,26 +82,6 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
 
         final NavigationView NV_MENU = getNavigationView(R.id.nav_view);
         NV_MENU.setNavigationItemSelectedListener(m_NavigationItemClickListener);
-
-
-
-//        //recycler view
-//        mRecyclerView.setHasFixedSize(true);
-//
-//        //use a linear layout manager
-//        mLayoutManager = new LinearLayoutManager(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//
-//        //specify an adapter (see also next example)
-//        mAdapter = new MultiItemAdapter() {
-//            @Override
-//            public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//                return new MyViewHolder(parent.getRootView());
-//            }
-//        };
-//
-//
-//        mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
@@ -119,12 +95,14 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
             switch (item.getItemId())
             {
                 case R.id.nav_map:
+                    //지도 보기
                     mainPresenter.requestGotoMapActivity();
                 break;
 
                 case R.id.nav_path:
                 {
-                    L.e("nav_path clicked--");
+                    //저장된 출퇴근 경로 List 화면
+                    mainPresenter.requestGotoMapActivity();
                 }
                 break;
 
@@ -203,9 +181,14 @@ public class MainActivity extends com.jumalent.goouttrafficsecretary.activities.
      * */
     @Override
     public void doStartMapActivity(){
-        Intent intent;
-        intent = new Intent(this, MapActivity.class);
-        startActivity(intent);
+        baseIntent = new Intent(this, MapActivity.class);
+        startActivity(baseIntent);
+    }
+
+    @Override
+    public void doStartPathListActivity(){
+        baseIntent = new Intent(this, PathListActivity.class);
+        startActivity(baseIntent);
     }
 
 

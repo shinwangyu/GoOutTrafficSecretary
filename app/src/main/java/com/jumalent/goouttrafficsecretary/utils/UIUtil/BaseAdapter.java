@@ -17,7 +17,7 @@ public class BaseAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -29,6 +29,10 @@ public class BaseAdapter extends RecyclerView.Adapter<MyViewHolder>{
     public void setItems(List<String> items){
         mItems.clear();
         mItems.addAll(items);
+    }
+
+    public String getItems(int pos){
+        return mItems.get(pos);
     }
 
     @Override
